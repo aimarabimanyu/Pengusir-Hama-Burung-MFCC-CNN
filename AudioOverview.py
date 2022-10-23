@@ -6,7 +6,7 @@ import librosa
 import librosa.display
 from glob import glob
 
-audio_file = './Dataset/Dataset 3/Sparrow_Dataset/483978-2.wav'
+audio_file = './Dataset/1_Sparrow_Dataset/483978-2.wav'
 
 # Waveform
 signal, sr = librosa.load(audio_file, sr=22050)
