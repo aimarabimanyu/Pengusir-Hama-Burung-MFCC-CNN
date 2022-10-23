@@ -19,10 +19,6 @@ def load_data(data_path):
 
 
 def plot_history(history):
-    """Plots accuracy/loss for training/validation set as a function of the epochs
-        :param history: Training history of model
-        :return:
-    """
 
     fig, axs = plt.subplots(2)
 
