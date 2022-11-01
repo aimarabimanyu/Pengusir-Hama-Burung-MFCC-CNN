@@ -112,6 +112,10 @@ if __name__ == "__main__":
     model = build_model(input_shape)
 
     # compile model
+    # \** Adam adalah algoritma optimasi pengganti untuk stochastic gradient descent untuk training model deep learning. 
+    # \** Adam menggabungkan sifat-sifat terbaik dari algoritma AdaGrad dan RMSProp untuk memberikan optimization algorithm 
+    # \** yang dapat menangani sparse gradients pada noisy problem.
+    
     optimiser = keras.optimizers.Adam(learning_rate=0.0001)
     model.compile(optimizer=optimiser,
                   loss='sparse_categorical_crossentropy',
