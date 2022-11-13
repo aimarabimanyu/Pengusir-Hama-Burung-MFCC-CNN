@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow import keras
 from keras.models import model_from_json
 
-TEST_PATH = "./Testing/test.json"
+TEST_PATH = "./Testing1/test.json"
 
 # load json and create model
 json_file = open("./model.json", 'r')

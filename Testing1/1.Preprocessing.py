@@ -9,8 +9,8 @@ import csv
 warnings.filterwarnings("ignore")
 
 
-DATA_PATH = "./AudioTesting/capunchin3.wav"
-JSON_PATH = "./Testing/test.json"
+DATA_PATH = "./Testing1/TestAudio/capunchin3.wav"
+JSON_PATH = "./Testing1/test.json"
 SAMPLE_RATE = 22050
 SOUND_DURATION = 3  # measured in seconds
 SAMPLES_PER_SOUND = SAMPLE_RATE * SOUND_DURATION

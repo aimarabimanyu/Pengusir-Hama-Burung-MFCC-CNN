@@ -1,12 +1,13 @@
 import wave
 from dataclasses import dataclass, asdict
+
 import pyaudio
 
 
 @dataclass
 class StreamParams:
     format: int = pyaudio.paInt16
-    channels: int = 2
+    channels: int = 1
     rate: int = 44100
     frames_per_buffer: int = 1024
     input: bool = True
@@ -19,6 +20,7 @@ class StreamParams:
 class Recorder:
     """Recorder uses the blocking I/O facility from pyaudio to record sound
     from mic.
+
     Attributes:
         - stream_params: StreamParams object with values for pyaudio Stream
             object
@@ -31,6 +33,7 @@ class Recorder:
 
     def record(self, duration: int, save_path: str) -> None:
         """Record sound from mic for a given amount of seconds.
+
         :param duration: Number of seconds we want to record for
         :param save_path: Where to store recording
         """
@@ -63,6 +66,19 @@ class Recorder:
 
 
 if __name__ == "__main__":
-    stream_params = StreamParams()
-    recorder = Recorder(stream_params)
-    recorder.record(5, "audio.wav")
+    i = 0
+    while True:
+        i+=1
+        name = './Record/audio{}.wav'.format(i)
+        stream_params = StreamParams()
+        recorder = Recorder(stream_params)
+        recorder.record(4, name)
+
+
+
+
+
+
+
+
+
