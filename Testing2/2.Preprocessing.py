@@ -56,5 +56,8 @@ if __name__ == "__main__":
         i+=1
         data_path = './Record/audio{}.wav'.format(i)
         json_path = './ExtAudio/test{}.json'.format(i)
+        isExist = './Record/audio{}.wav'.format(i+1)
+        if os.path.exists(isExist) == False:
+            time.sleep(6)
         save_mfcc(data_path, json_path, num_segments=10)
         time.sleep(3)
