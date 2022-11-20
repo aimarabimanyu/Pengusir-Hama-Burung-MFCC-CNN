@@ -8,7 +8,7 @@ import pyaudio
 class StreamParams:
     format: int = pyaudio.paInt16
     channels: int = 1
-    rate: int = 44100
+    rate: int = 22050
     frames_per_buffer: int = 1024
     input: bool = True
     output: bool = False
@@ -37,11 +37,9 @@ class Recorder:
         :param duration: Number of seconds we want to record for
         :param save_path: Where to store recording
         """
-        print("Start recording...")
         self._create_recording_resources(save_path)
         self._write_wav_file_reading_from_stream(duration)
         self._close_recording_resources()
-        print("Stop recording")
 
     def _create_recording_resources(self, save_path: str) -> None:
         self._pyaudio = pyaudio.PyAudio()
@@ -65,7 +63,7 @@ class Recorder:
         self._pyaudio.terminate()
 
 
-if __name__ == "__main__":
+def main():
     i = 0
     while True:
         i+=1

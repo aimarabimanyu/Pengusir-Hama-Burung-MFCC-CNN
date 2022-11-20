@@ -7,6 +7,7 @@ import warnings
 import csv
 import time
 
+
 warnings.filterwarnings("ignore")
 
 
@@ -50,7 +51,7 @@ def save_mfcc(
     with open(json_path, "w") as fp:
         json.dump(dataset, fp, indent=4)
 
-if __name__ == "__main__":
+def main():
     i = 0
     while True:
         i+=1
