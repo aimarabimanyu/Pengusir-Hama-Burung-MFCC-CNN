@@ -8,7 +8,7 @@ import csv
 
 warnings.filterwarnings("ignore")
 DATASET_PATH = "Dataset"
-JSON_PATH = "./Preprocessing/data.json"
+JSON_PATH = "./data.json"
 SAMPLE_RATE = 22050
 SOUND_DURATION = 3  # measured in seconds
 SAMPLES_PER_SOUND = SAMPLE_RATE * SOUND_DURATION

@@ -21,13 +21,13 @@ def main():
             time.sleep(6)
         
         # load json and create model
-        json_file = open("./model.json", 'r')
+        json_file = open("D:\Kuliah\Semester 5\Pemrosesan Suara\Tugas\Project Pemrosesan Suara\model.json", 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         model = model_from_json(loaded_model_json)
 
         # load weights into new model
-        model.load_weights("./model.h5")
+        model.load_weights("D:\Kuliah\Semester 5\Pemrosesan Suara\Tugas\Project Pemrosesan Suara\model.h5")
         print("Loaded model from disk")
 
         with open(data_path, "r") as ft:

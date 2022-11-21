@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from random import randint
 
 
-DATA_PATH = "./Preprocessing/data.json"
+DATA_PATH = "./data.json"
 
 
 def load_data(data_path):
