@@ -1,5 +1,4 @@
 import os
-from re import L
 import librosa
 import json
 import math
@@ -9,8 +8,9 @@ import csv
 warnings.filterwarnings("ignore")
 DATASET_PATH = "Dataset"
 JSON_PATH = "./data.json"
+CSV_PATH = "./data.csv"
 SAMPLE_RATE = 22050
-SOUND_DURATION = 3  # measured in seconds
+SOUND_DURATION = 3  # *detik
 SAMPLES_PER_SOUND = SAMPLE_RATE * SOUND_DURATION
 
 
@@ -18,37 +18,37 @@ def save_mfcc(
     dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=4
 ):
 
-    # dictionary to store mapping, labels, and MFCCs
+    # buat dictionary untuk simpan atribut mapping, labels, dan MFCCs
     dataset = {"mapping": [], "labels": [], "mfcc": [], "files": []}
 
     samples_per_segment = int(SAMPLES_PER_SOUND / num_segments)
     num_mfcc_vectors_per_segment = math.ceil(samples_per_segment / hop_length)
 
-    # loop through all genre sub-folder
+    # looping sub-folder dataset
     for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
 
-        # ensure we're processing a genre sub-folder level
+        # cek agar memproses sub-folder dataset
         if dirpath is not dataset_path:
 
-            # save genre label (i.e., sub-folder name) in the mapping
+            # simpan nama sub-folder pada key mapping di dictionary
             semantic_label = dirpath.split("/")[-1]
             dataset["mapping"].append(semantic_label)
             print("\nProcessing: {}".format(semantic_label))
 
-            # process all audio files in genre sub-dir
+            # process semua audio di sub-folder
             for f in filenames:
                 file_path = os.path.join(dirpath, f)
 
-                # load audio file and slice it to ensure length consistency among different files
+                # muat file audio dan potong untuk memastikan konsistensi panjang di antara file yang berbeda
                 signal, sample_rate = librosa.load(file_path)
 
-                # drop audio files with less than pre-decided number of samples
+                # seleksi kondisi jika audio kurang dari 3 detik
                 if len(signal) >= SAMPLES_PER_SOUND:
 
-                    # ensure consistency of the length of the signal
+                    # memastikan konsistensi panjang audio
                     signal = signal[:SAMPLES_PER_SOUND]
 
-                    # extract MFCCs
+                    # extract MFCC
                     MFCCs = librosa.feature.mfcc(
                         signal,
                         sample_rate,
@@ -57,17 +57,17 @@ def save_mfcc(
                         hop_length=hop_length,
                     )
 
-                    # store data for analysed track
+                    # simpan data ke dictionary
                     dataset["mfcc"].append(MFCCs.T.tolist())
                     dataset["labels"].append(i - 1)
                     dataset["files"].append(file_path)
                     print("{}: {}".format(file_path, i - 1))
 
-    # save MFCCs to json file
+    # simpan MFCC menjadi file json
     with open(json_path, "w") as fp:
         json.dump(dataset, fp, indent=4)
 
-    # save MFCCs to csv file
+    # simpan MFCC menjadi file csv
     j = len(dataset["labels"])
     i = 0
     temp = []

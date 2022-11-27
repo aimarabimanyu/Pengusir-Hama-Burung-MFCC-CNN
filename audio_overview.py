@@ -1,12 +1,11 @@
 from signal import signal
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import librosa
 import librosa.display
-from glob import glob
 
 audio_file = "./Dataset/1_Sparrow_Dataset/483978-2.wav"
+
 
 # Waveform
 signal, sr = librosa.load(audio_file, sr=22050)

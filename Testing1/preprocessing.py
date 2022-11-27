@@ -9,10 +9,10 @@ import csv
 warnings.filterwarnings("ignore")
 
 
-DATA_PATH = "./Testing1/TestAudio/capunchin3.wav"
+DATA_PATH = "./Testing1/TestAudio/capunchin4.wav"
 JSON_PATH = "./Testing1/test.json"
 SAMPLE_RATE = 22050
-SOUND_DURATION = 3  # measured in seconds
+SOUND_DURATION = 3  # *detik
 SAMPLES_PER_SOUND = SAMPLE_RATE * SOUND_DURATION
 
 
@@ -20,19 +20,19 @@ def save_mfcc(
     json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=4
 ):
 
-    # dictionary to store mapping, labels, and MFCCs
+    # buat dictionary untuk simpan atribut mapping, labels, dan MFCCs
     dataset = {"mfcc": []}
 
     samples_per_segment = int(SAMPLES_PER_SOUND / num_segments)
     num_mfcc_vectors_per_segment = math.ceil(samples_per_segment / hop_length)
 
-    # load audio file and slice it to ensure length consistency among different files
+    # muat file audio dan potong untuk memastikan konsistensi panjang di antara file yang berbeda
     signal, sample_rate = librosa.load(DATA_PATH)
 
-    # drop audio files with less than pre-decided number of samples
+    # seleksi kondisi jika audio kurang dari 3 detik
     if len(signal) >= SAMPLES_PER_SOUND:
 
-        # ensure consistency of the length of the signal
+        # memastikan konsistensi panjang audio
         signal = signal[:SAMPLES_PER_SOUND]
 
         # extract MFCCs
@@ -44,10 +44,10 @@ def save_mfcc(
             hop_length=hop_length,
         )
 
-        # store data for analysed track
+        # simpan data ke dictionary
         dataset["mfcc"].append(MFCCs.T.tolist())
 
-    # save MFCCs to json file
+    # simpan MFCC menjadi json
     with open(json_path, "w") as fp:
         json.dump(dataset, fp, indent=4)
 

@@ -4,8 +4,7 @@ import preprocessing
 import classification
 import time
 
-
-# creating thread
+# buat thread
 
 t1 = threading.Thread(target=input_audio.main)
 t2 = threading.Thread(target=preprocessing.main)
