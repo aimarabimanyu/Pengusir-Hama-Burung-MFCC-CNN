@@ -9,7 +9,7 @@ import csv
 warnings.filterwarnings("ignore")
 
 
-DATA_PATH = "./Testing1/TestAudio/capunchin4.wav"
+DATA_PATH = "./Testing1/TestAudio/pipit1.wav"
 JSON_PATH = "./Testing1/test.json"
 SAMPLE_RATE = 22050
 SOUND_DURATION = 3  # *detik

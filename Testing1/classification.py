@@ -28,5 +28,5 @@ predictionTest = model.predict(A)
 
 # ambil nilai index
 predicted_indexTest = np.argmax(predictionTest, axis=1)
-    
+print("Uji Coba: ./Testing1/TestAudio/pipit1.wav")
 print("Predicted label: {}".format(predicted_indexTest))
